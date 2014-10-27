@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Chat Sample</title>
+</head>
+<body>
+    <div>
+        <input type="text" id="msg" />
+        <button type="button" id="send">Send</button>
+    </div>
+    <ul id="messages"></ul>
+        
+    <script src="Scripts/jquery-1.6.4.min.js"></script>
+    <script src="Scripts/jquery.signalR-2.1.2.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+
+            var connection = $.hubConnection(),
+                chatHub = connection.createHubProxy("ChatHub"),
+                msgContainer = $('#messages');
+
+            chatHub.on('receivedMessage', function(msg) {
+                $('<li>').text(msg).appendTo(msgContainer);
+            });
+
+            connection.start().done(function() {
+
+                $('#send').click( function() {
+                    var msg = $('#msg').val();
+                    if (msg) {
+                        chatHub.invoke("sendMessage", msg);
+                    }
+                });
+            }).fail(function () { console.log("error"); });
+        });
+    </script>
+</body>
+</html>

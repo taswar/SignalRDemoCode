@@ -1,0 +1,2 @@
+'C:\Program Files (x86)\IIS Express\iisexpress.exe'  /port:9090 /clr:v4.0 /path:"C:\Users\OnurSevin\Documents\Visual Studio 2013\Projects\RedisChatApp\RedisChatApp"
+'C:\Program Files (x86)\IIS Express\iisexpress.exe'  /port:9091 /clr:v4.0 /path:"C:\Users\OnurSevin\Documents\Visual Studio 2013\Projects\RedisChatApp\RedisChatApp"
