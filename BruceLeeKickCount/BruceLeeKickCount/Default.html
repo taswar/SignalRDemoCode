@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Bruce Lee Kick</title>
+</head>
+    <body>
+       
+               
+        <img src="bruce-lee-side-kick-o.gif" />
+        <br />
+        <div id="count" style="font-size:xx-large"></div>
+        
+        <script src="Scripts/jquery-1.6.4.min.js"></script>
+        <script src="Scripts/jquery.signalR-2.1.2.min.js"></script>
+       
+    
+        <script type="text/javascript">
+            $(function() {
+                var connection = $.hubConnection(),
+                    hub = connection.createHubProxy("bruceLeeKickHub");
+
+                hub.on('onKicking', function(k) {
+                    $('#count').text(k);
+                });
+
+                connection.start(function() {
+                    hub.invoke("dropKick");
+                });
+            });
+        </script>
+    </body>
+</html>
